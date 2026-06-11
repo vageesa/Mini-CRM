@@ -1,8 +1,0 @@
-{
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "npx prisma generate && node server.js"
-  }
-}

@@ -1,0 +1,8 @@
+{
+  "name": "mini-crm-root",
+  "private": true,
+  "scripts": {
+    "build": "cd crm-backend && npm install && cd ../channel-service && npm install",
+    "start": "cd crm-backend && npm start"
+  }
+}
