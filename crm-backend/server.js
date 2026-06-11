@@ -6,8 +6,6 @@ const express = require('express');
 console.log('Loading cors...');
 const cors = require('cors');
 console.log('Loading routes...');
-const routes = require('./routes');
-console.log('Modules loaded successfully!');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,7 +29,14 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', errors: lastErrors });
 });
 
-app.use('/api', routes);
+try {
+  const routes = require('./routes');
+  app.use('/api', routes);
+  console.log('Routes loaded successfully.');
+} catch (error) {
+  console.error('FAILED TO LOAD ROUTES:', error);
+  lastErrors.push('Route Load Error: ' + error.toString());
+}
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`CRM Backend running on port ${PORT}`);
